@@ -1,6 +1,17 @@
-# rsilk
+<h1 align="center"><i>✨ rsilk ✨ </i></h1>
 
-the python binding for [silk-rs](https://github.com/lz1998/silk-rs)
+<h3 align="center">The python binding for <a href="https://github.com/lz1998/silk-rs">silk-rs</a> </h3>
+
+
+[![pypi](https://img.shields.io/pypi/v/rsilk.svg)](https://pypi.org/project/rsilk/)
+![python](https://img.shields.io/pypi/pyversions/rsilk)
+![implementation](https://img.shields.io/pypi/implementation/rsilk)
+![wheel](https://img.shields.io/pypi/wheel/rsilk)
+![license](https://img.shields.io/github/license/synodriver/rsilk.svg)
+![action](https://img.shields.io/github/workflow/status/synodriver/rsilk/build%20wheel)
+
+
+
 
 ## Usage
 
@@ -9,7 +20,7 @@ the python binding for [silk-rs](https://github.com/lz1998/silk-rs)
 ```python
 import rsilk
 
-with open("input.pcm", "rb") as f:
+with open("tests/input.pcm", "rb") as f:
     data = f.read()
 
 output = rsilk.encode(data, 24000, 24000, True)
