@@ -23,7 +23,7 @@ import rsilk
 with open("tests/input.pcm", "rb") as f:
     data = f.read()
 
-output = rsilk.encode(data, 24000, 24000, True)
+output = rsilk.encode(data, 24000, 24000)
 with open("output.silk", "wb") as f:
     f.write(output)
 ```
@@ -47,6 +47,6 @@ with open("output.pcm", "wb") as f:
 
 ### Public functions
 
-- def decode(src: bytes, sample_rate: int) -> bytes
+- decode(src: bytes, sample_rate: int, frame_size: int = 0, frames_per_packet: int = 1, more_internal_decoder_frames: int = 0, in_band_fec_offset: int = 0, loss: bool = False) -> bytes
 
-- def encode(input: bytes, sample_rate: int, bit_rate: int, tencent: bool) -> bytes
+- encode(input: bytes, sample_rate: int, bit_rate: int, packet_loss_percentage: int = 0, complexity: int = 2, use_inband_fec: bool = False, use_dtx: bool = False, tencent: bool = True) -> bytes
