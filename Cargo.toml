@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 pyo3 = { version = "0.15.1", features = ["extension-module"] }
-silk-rs = { git = "https://github.com/lz1998/silk-rs", branch = "main" }
+silk-rs = { git = "https://github.com/synodriver/silk-rs.git", branch = "stream" }
 bytes = "1"
 
 [profile.dev]
