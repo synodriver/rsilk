@@ -2,8 +2,7 @@ use pyo3::prelude::*;
 
 use wrapper::*;
 
-pub mod wrapper;
-pub mod pbytes;
+mod wrapper;
 
 #[pymodule]
 fn _silk(_py: Python, m: &PyModule) -> PyResult<()> {
@@ -12,12 +11,3 @@ fn _silk(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add("SilkError", _py.get_type::<wrapper::SilkError>())?;
     Ok(())
 }
-
-// #[cfg(test)]
-// mod tests {
-//     #[test]
-//     fn it_works() {
-//         let result = 2 + 2;
-//         assert_eq!(result, 4);
-//     }
-// }
