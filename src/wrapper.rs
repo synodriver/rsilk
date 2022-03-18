@@ -1,8 +1,8 @@
 use pyo3::prelude::*;
 use pyo3::exceptions;
+use pyo3::types::PyBytes;
 use pyo3::create_exception;
 
-use crate::pbytes::PBytes;
 use silk_rs;
 
 create_exception!(_silk, SilkError, exceptions::PyException);
@@ -11,10 +11,9 @@ create_exception!(_silk, SilkError, exceptions::PyException);
 ///
 /// encode pcm to silk
 #[pyfunction]
-pub fn encode(input: Vec<u8>, sample_rate: i32, bit_rate: i32, tencent: bool) -> PyResult<PBytes> {
-    match silk_rs::encode_silk(input, sample_rate, bit_rate, tencent)
-    {
-        Ok(value) => Ok(PBytes::from(value)),
+pub fn encode<'a>(py: Python, input: &'a [u8], sample_rate: i32, bit_rate: i32, tencent: bool) -> PyResult<PyObject> {
+    match silk_rs::encode_silk(input, sample_rate, bit_rate, tencent) {
+        Ok(data) => Ok(PyBytes::new(py, &data).into()),
         Err(e) => Err(SilkError::new_err(e.to_string())),
     }
 }
@@ -23,10 +22,9 @@ pub fn encode(input: Vec<u8>, sample_rate: i32, bit_rate: i32, tencent: bool) ->
 ///
 /// decode silk to pcm
 #[pyfunction]
-pub fn decode(src: Vec<u8>, sample_rate: i32) -> PyResult<PBytes> {
-    match silk_rs::decode_silk(src, sample_rate)
-    {
-        Ok(value) => Ok(PBytes::from(value)),
+pub fn decode<'a>(py: Python, src: &'a [u8], sample_rate: i32) -> PyResult<PyObject> {
+    match silk_rs::decode_silk(src, sample_rate) {
+        Ok(data) => Ok(PyBytes::new(py, &data).into()),
         Err(e) => Err(SilkError::new_err(e.to_string())),
     }
 }
